@@ -8,6 +8,7 @@ except ImportError:
 
 #importamos las clases
 from include.user import User
+from include.history import History
 from include.bcolor import Bcolors
 
 #funciones
@@ -30,6 +31,9 @@ if __name__ == "__main__":
     player.setUserSername(input(f"Muy bien {player.getUserName()}, ahora ingresa tu apellido: "))
     print(f"{Bcolors.OKGREEN}Ahora sí, es un gusto tenerte aquí {player.getUserName()} {player.getUserSername()}.")
     print(player.getUserLogin())
+
+    history = History()
+    print(history.getHistory())
 
     #filePath = input("Ingrese la ruta: ")
     #fileName = input("Ingrese el nombre del archivo y su extensión: ")
