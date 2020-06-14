@@ -1,14 +1,18 @@
 # veintePalabras
 
-#Ejecutar el entorno virtual
+## ¿Cómo ejecuto el programa?
 
-Para activar el entorno virtual debemos ejecutar:
-source veintePalabras/bin/activate
+1. Activar el entorno virtual:
+```source veintePalabras/bin/activate```
 
-#Links útiles
+2. Instalo todas las dependencias necesarias:
+```pip3 install -r requirements.txt```
 
-Crear y usar un entorno virtual
-https://packaging.python.org/tutorials/installing-packages/#requirements-for-installing-packages
+3. Ejecutamos el archivo main.py
+```(veintePalabras) user@device veintePalabras % python3 main.py```
 
-Crear un archivo con todos los requerimientos del proyecto
-https://gist.github.com/kamikaze-lab/7d5987ff86223e1bf686
+## Links útiles
+
+1. [Crear y usar un entorno virtual.](https://packaging.python.org/tutorials/installing-packages/#requirements-for-installing-packages)
+
+2. [Crear un archivo con todos las dependencias del proyecto.](https://gist.github.com/kamikaze-lab/7d5987ff86223e1bf686)
