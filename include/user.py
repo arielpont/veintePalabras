@@ -13,7 +13,7 @@ class User:
     userSername = ""
     userLogin = ""
 
-    #funciones
+    #métodos
     def __init__(self):
         #obtener la fecha y hora de logeuo del usuario
         timeZone = pytz.timezone("Europe/London")
