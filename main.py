@@ -9,7 +9,6 @@ except ImportError:
 #importamos las clases
 from include.user import User
 from include.bcolor import Bcolors
-from datetime import datetime
 
 #funciones
 def clear(): 
@@ -30,10 +29,6 @@ if __name__ == "__main__":
     player.setUserName(input("Hola, ingresa tu nombre: "))
     player.setUserSername(input(f"Muy bien {player.getUserName()}, ahora ingresa tu apellido: "))
     print(f"{Bcolors.OKGREEN}Ahora sí, es un gusto tenerte aquí {player.getUserName()} {player.getUserSername()}.")
-
-    timeZone = pytz.timezone("Europe/London")
-    dateTimeZone = datetime.now(timeZone)
-    player.setUserLogin("UTC+0, "+dateTimeZone.strftime("%H:%M:%S, %d/%m/%Y"))
     print(player.getUserLogin())
 
     #filePath = input("Ingrese la ruta: ")

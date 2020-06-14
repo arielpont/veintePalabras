@@ -1,3 +1,10 @@
+try:
+    import  pytz
+except ImportError:
+    pytz = None
+
+from datetime import datetime
+
 class User:
     """ clase para manejar los usuarios """
     
@@ -8,8 +15,10 @@ class User:
 
     #funciones
     def __init__(self):
-        #guardar la fecha de logeuo del usuario
-        pass
+        #obtener la fecha y hora de logeuo del usuario
+        timeZone = pytz.timezone("Europe/London")
+        dateTimeZone = datetime.now(timeZone)
+        self.setUserLogin("UTC+0, "+dateTimeZone.strftime("%H:%M:%S, %d/%m/%Y"))
 
     def __iter__(self):
         pass
