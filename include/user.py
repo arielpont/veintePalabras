@@ -6,6 +6,7 @@ class User:
     userSername = ""
     userLogin = ""
 
+    #funciones
     def __init__(self):
         #guardar la fecha de logeuo del usuario
         pass
