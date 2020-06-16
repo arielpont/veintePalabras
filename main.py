@@ -14,7 +14,7 @@ from include.bcolor import Bcolors
 #funciones
 def clear(): 
     #windows 
-    if __name__ == "nt": 
+    if os.name == "nt": 
         _ = os.system("cls") 
     #mac and linux
     else: 
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     time.sleep(2)
     clear()
 
-    #creación de la instancia History/()
+    #creación de la instancia History()
     history = History()
     print(f"{Bcolors.HEADER}Es momento de continuar la historia {player.getUserName()} {player.getUserSername()}:")
     history.setNewPartHistory(input(f"{Bcolors.OKGREEN}{Bcolors.BOLD}..." + str(history.getLastPartHistory()) + "\n"))
@@ -46,7 +46,7 @@ if __name__ == "__main__":
     clear()
 
     print(f"Tu historia a sido guardada: ")
-    print(f"{Bcolors.UNDERLINE}" + history.getLastPartHistory() + history.getNewPartHistory())
+    print(f"{Bcolors.UNDERLINE}" + history.getLastPartHistory() + " " + history.getNewPartHistory())
 
 
     #filePath = input("Ingrese la ruta: ")
