@@ -2,13 +2,16 @@
 
 ## ¿Cómo preparar el entorno para trabajar?
 
-1. Instalamos ```pipenv```.
+1. Instalamos ```pipenv```. 
+
 ```pip install pipenv``` o ```pip3 install pipenv```
 
-2. Creamos nuestro entorno virtual.
+2. Creamos nuestro entorno virtual.  
+
 ```pipenv shell```
 
-3. Instalamos todas las dependencias del ```Pipfile.lock```.
+3. Instalamos todas las dependencias del ```Pipfile.lock```.  
+
 ```pipenv install --ignore-pipfile```
 
 ## Referencias
