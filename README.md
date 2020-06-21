@@ -1,18 +1,17 @@
 # veintePalabras
 
-## ¿Cómo ejecuto el programa?
+## ¿Cómo preparar el entorno para trabajar?
 
-1. Activar el entorno virtual:
-```source veintePalabras/bin/activate```
+1. Instalamos ```pipenv```.
+```pip install pipenv``` o ```pip3 install pipenv```
 
-2. Instalo todas las dependencias necesarias:
-```pip3 install -r requirements.txt```
+2. Creamos nuestro entorno virtual.
+```pipenv shell```
 
-3. Ejecutamos el archivo main.py
-```(veintePalabras) user@device veintePalabras % python3 main.py```
+3. Instalamos todas las dependencias del ```Pipfile.lock```.
+```pipenv install --ignore-pipfile```
 
-## Links útiles
+## Referencias
 
-1. [Crear y usar un entorno virtual.](https://packaging.python.org/tutorials/installing-packages/#requirements-for-installing-packages)
-
-2. [Crear un archivo con todos las dependencias del proyecto.](https://gist.github.com/kamikaze-lab/7d5987ff86223e1bf686)
+1. [Crear un entorno virtual con Pipenv](https://realpython.com/pipenv-guide/)
+2. [Convenciones](https://www.python.org/dev/peps/pep-0008/#introduction)

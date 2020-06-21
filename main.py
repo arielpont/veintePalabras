@@ -1,5 +1,8 @@
 try:
-    import sys, os, glob, time
+    import sys
+    import os
+    import glob
+    import time
 except ImportError:
     sys = None
     os = None
@@ -45,8 +48,11 @@ if __name__ == "__main__":
     time.sleep(2)
     clear()
 
-    print(f"Tu historia a sido guardada: ")
-    print(f"{Bcolors.UNDERLINE}" + history.getLastPartHistory() + " " + history.getNewPartHistory())
+    if history.saveNewPartHistory():
+        print("Tu historia a sido guardada: ")
+        print(f"{Bcolors.UNDERLINE}" + history.getFullHistory())
+    else:
+        print("No se ha añadido nada nuevo a la historia.")
 
 
     #filePath = input("Ingrese la ruta: ")
