@@ -11,6 +11,7 @@ class User:
     #variables
     userName = ""
     userSername = ""
+    userEmail = ""
     userLogin = ""
 
     #métodos
@@ -41,9 +42,18 @@ class User:
         self.userSername = set
         return self.userSername
 
+    def getUserEmail(self):
+        return self.userEmail
+
+    def setUserEmail(self, set):
+        self.userEmail = set
+        return self.userEmail
+
     def getUserLogin(self):
         return self.userLogin
 
     def setUserLogin(self, set):
         self.userLogin = set
         return self.userLogin
+
+    #(tarea) crear funciones para almacenar los datos de los usuarios en un archivo

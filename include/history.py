@@ -42,11 +42,12 @@ class History:
         self.newPartHistory = set
         return self.newPartHistory
     
-    #funciones
+    #convertir una list en string
     def listToString(self, list):  
         str = " " 
         return (str.join(list))
     
+    #guardar la nueva parte de la historia
     def saveNewPartHistory(self):
         if self.getNewPartHistory() != "":
             fileObject = open(r"data/history.txt", "a", encoding="utf-8")
