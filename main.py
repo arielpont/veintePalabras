@@ -34,7 +34,7 @@ if __name__ == "__main__":
     player.setUserSername(input(f"Muy bien {player.getUserName()}, ahora ingresa tu apellido: "))
     player.setUserEmail(input(f"Genial {player.getUserName()}, por último ingresá tu email: "))
     print(f"{Bcolors.OKGREEN}Ahora sí, es un gusto tenerte aquí {player.getUserName()} {player.getUserSername()}, {player.getUserEmail()}.")
-    print(player.getUserLogin())
+    print(player.getUserLoginTime())
 
     #delay de 2 segundos
     time.sleep(2)
