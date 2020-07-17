@@ -4,17 +4,17 @@ Es un juego CLI (command-line interface) dónde los usuarios pueden jugar a crea
 
 ## ¿Cómo preparar el entorno para trabajar?
 
-1. Instalamos ``` pipenv ```. 
+Antes de ejecutar los siguientes comandos es necesario tener instalado [Python 3](https://www.python.org/downloads/) en nuestro ordenador.
 
-+ Windows: ``` pip install pipenv ```.  
-+ MacOs o Linux: ``` pip3 install pipenv ```.   
+1. Instalamos "pipenv". 
 
-  
-2. Creamos nuestro entorno virtual.  
++ Windows:  
+``` pip install pipenv ```.  
 
-``` pipenv shell ```.  
-   
-3. Instalamos todas las dependencias del ``` Pipfile.lock ```.  
++ MacOs o Linux:  
+``` pip3 install pipenv ```.   
+
+2. Instalamos nuestro entorno virtual tomando las dependencias del "Pipfile.lock".  
 
 ``` pipenv install --ignore-pipfile ```
 

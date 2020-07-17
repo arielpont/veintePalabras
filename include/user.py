@@ -11,14 +11,15 @@ class User:
     #variables
     userName = ""
     userSername = ""
-    userLogin = ""
+    userEmail = ""
+    userLoginTime = ""
 
     #métodos
     def __init__(self):
         #obtener la fecha y hora de logeuo del usuario
         timeZone = pytz.timezone("Europe/London")
         dateTimeZone = datetime.now(timeZone)
-        self.setUserLogin("UTC+0, "+dateTimeZone.strftime("%H:%M:%S, %d/%m/%Y"))
+        self.setUserLoginTime("UTC+0, "+dateTimeZone.strftime("%H:%M:%S, %d/%m/%Y"))
 
     def __iter__(self):
         pass
@@ -41,9 +42,18 @@ class User:
         self.userSername = set
         return self.userSername
 
-    def getUserLogin(self):
-        return self.userLogin
+    def getUserEmail(self):
+        return self.userEmail
 
-    def setUserLogin(self, set):
-        self.userLogin = set
-        return self.userLogin
+    def setUserEmail(self, set):
+        self.userEmail = set
+        return self.userEmail
+
+    def getUserLoginTime(self):
+        return self.userLoginTime
+
+    def setUserLoginTime(self, set):
+        self.userLoginTime = set
+        return self.userLoginTime
+
+    #(tarea) crear funciones para almacenar los datos de los usuarios en un archivo

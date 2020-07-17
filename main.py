@@ -32,8 +32,14 @@ if __name__ == "__main__":
     #seteo del nombre y apellido del usuario
     player.setUserName(input("Hola, ingresa tu nombre: "))
     player.setUserSername(input(f"Muy bien {player.getUserName()}, ahora ingresa tu apellido: "))
+<<<<<<< HEAD
     print(f"{Bcolors.OKGREEN}Un gusto tenerte aquí {player.getUserName()} {player.getUserSername()}.")
     print(player.getUserLogin())
+=======
+    player.setUserEmail(input(f"Genial {player.getUserName()}, por último ingresá tu email: "))
+    print(f"{Bcolors.OKGREEN}Ahora sí, es un gusto tenerte aquí {player.getUserName()} {player.getUserSername()}, {player.getUserEmail()}.")
+    print(player.getUserLoginTime())
+>>>>>>> 8c88908a80deed98eb1b1351a93179eda1426d17
 
     #delay de 2 segundos
     time.sleep(2)
@@ -50,10 +56,12 @@ if __name__ == "__main__":
 
     if history.saveNewPartHistory():
         print("Tu historia a sido guardada: ")
-        print(f"{Bcolors.UNDERLINE}" + history.getFullHistory())
+        print(f"{Bcolors.UNDERLINE}" + "\n" + history.getFullHistory())
     else:
         print("No se ha añadido nada nuevo a la historia.")
 
+    print(f"{Bcolors.HEADER}" + "\nMuy bien " + player.getUserName() + " " + player.getUserSername() + ", ahora es momento de que esta historia siga viajando.\nCompartí este programa con quien quieras para que continue la historia.\n\n")
+    time.sleep(2)
 
     #filePath = input("Ingrese la ruta: ")
     #fileName = input("Ingrese el nombre del archivo y su extensión: ")
