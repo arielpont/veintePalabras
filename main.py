@@ -32,7 +32,7 @@ if __name__ == "__main__":
     #seteo del nombre y apellido del usuario
     player.setUserName(input("Hola, ingresa tu nombre: "))
     player.setUserSername(input(f"Muy bien {player.getUserName()}, ahora ingresa tu apellido: "))
-    print(f"{Bcolors.OKGREEN}Ahora sí, es un gusto tenerte aquí {player.getUserName()} {player.getUserSername()}.")
+    print(f"{Bcolors.OKGREEN}Un gusto tenerte aquí {player.getUserName()} {player.getUserSername()}.")
     print(player.getUserLogin())
 
     #delay de 2 segundos
