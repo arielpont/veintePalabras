@@ -1,3 +1,9 @@
+try:
+    import os
+except ImportError:
+    print("ImportError: no se han podido importar todos los módulos.")
+    os = None
+
 class History:
     """ clase para manejar las historias """
    
@@ -8,7 +14,25 @@ class History:
 
     #métodos
     def __init__(self):
-        fileObject = open(r"dist/history.txt", encoding="utf-8")
+        
+        historyFilePath = "dist/history.txt"
+
+        if not os.path.exists(os.path.dirname(historyFilePath)):
+            #el archivo no existe
+            try:
+                #intento crear el archivo y le cargo el principio de la historia
+                os.makedirs(os.path.dirname(historyFilePath))
+                with open(historyFilePath, "w") as file:
+                    file.write("En un antiguo poblado Chino exisitía una costumbre muy rara. Los habitantes")
+            except OSError:
+                print("No se pudo crear el archivo " + historyFilePath)
+        else:
+            #el archivo ya existe
+            pass
+
+        #abro el archivo en modo lectura
+        fileObject = open(r""+historyFilePath, encoding="utf-8")
+
         self.setFullHistory(fileObject.read())
         #guardo las últimas 20 palabras
         self.setLastPartHistory(((self.getFullHistory()).split())[-20:])

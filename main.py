@@ -86,9 +86,9 @@ if __name__ == "__main__":
     player = User()
 
     #seteo del nombre y apellido del usuario
-    player.setUserName(input("Hola, ingresa tu nombre: "))
-    player.setUserSername(input(f"Muy bien {player.getUserName()}, ahora ingresa tu apellido: "))
-    player.setUserEmail(input(f"Genial {player.getUserName()}, por último ingresá tu email: "))
+    player.setUserName(str(input("Hola, ingresa tu nombre: ")))
+    player.setUserSername(str(input(f"Muy bien {player.getUserName()}, ahora ingresa tu apellido: ")))
+    player.setUserEmail(str(input(f"Genial {player.getUserName()}, por último ingresá tu email: ")))
     print(f"{Bcolors.OKGREEN}Ahora sí, es un gusto tenerte aquí {player.getUserName()} {player.getUserSername()}, {player.getUserEmail()}.")
     print(player.getUserLoginTime())
 
