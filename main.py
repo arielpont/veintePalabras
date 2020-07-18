@@ -72,12 +72,16 @@ if __name__ == "__main__":
         print("\n")
 
         if optionSelected == 1:
-            print(f"{Bcolors.OKGREEN}Elegista la opción: {Bcolors.ENDC}" + options[optionSelected - 1])
+            clear()
+            print(f"{Bcolors.OKGREEN}Elegista la opción: {Bcolors.ENDC}" + options[optionSelected - 1] + "\n")
         elif optionSelected == 2:
-            print(f"{Bcolors.OKGREEN}Elegista la opción: {Bcolors.ENDC}" + options[optionSelected - 1])
+            clear()
+            print(f"{Bcolors.OKGREEN}Elegista la opción: {Bcolors.ENDC}" + options[optionSelected - 1] + "\n")
         elif optionSelected == 3:
-            print(f"{Bcolors.OKGREEN}Elegista la opción: {Bcolors.ENDC}" + options[optionSelected - 1])
+            clear()
+            print(f"{Bcolors.OKGREEN}Elegista la opción: {Bcolors.ENDC}" + options[optionSelected - 1] + "\n")
         elif optionSelected == 4:
+            clear()
             break
         else:
             print("\nPor favor, selecciona una opción válida")
@@ -86,11 +90,13 @@ if __name__ == "__main__":
     player = User()
 
     #seteo del nombre y apellido del usuario
-    player.setUserName(str(input("Hola, ingresa tu nombre: ")))
-    player.setUserSername(str(input(f"Muy bien {player.getUserName()}, ahora ingresa tu apellido: ")))
-    player.setUserEmail(str(input(f"Genial {player.getUserName()}, por último ingresá tu email: ")))
-    print(f"{Bcolors.OKGREEN}Ahora sí, es un gusto tenerte aquí {player.getUserName()} {player.getUserSername()}, {player.getUserEmail()}.")
-    print(player.getUserLoginTime())
+    player.setUserName(str(input("Hola, ingrese su nombre: ")))
+    player.setUserSername(str(input(f"Muy bien {Bcolors.OKGREEN}{player.getUserName()}{Bcolors.ENDC}, ahora ingrese su apellido: ")))
+    player.setUserEmail(str(input(f"Genial {Bcolors.OKGREEN}{player.getUserName()} {player.getUserSername()}{Bcolors.ENDC}, por último ingrese su email: ")))
+    print(f"Ahora sí, es un gusto tenerlo aquí {Bcolors.OKGREEN}{player.getUserName()} {player.getUserSername()}, {player.getUserEmail()}.{Bcolors.ENDC}")
+    
+    print("\n")
+    print(f"{Bcolors.FAIL}El horario de su registro es: {player.getUserLoginTime()}{Bcolors.ENDC}")
 
     #delay de 2 segundos
     time.sleep(2)
@@ -98,38 +104,18 @@ if __name__ == "__main__":
 
     #creación de la instancia History()
     history = History()
-    print(f"{Bcolors.HEADER}Es momento de continuar la historia {player.getUserName()} {player.getUserSername()}:")
-    history.setNewPartHistory(input(f"{Bcolors.OKGREEN}{Bcolors.BOLD}..." + str(history.getLastPartHistory()) + "\n"))
+    print(f"{Bcolors.HEADER}Es momento de continuar la historia {player.getUserName()} {player.getUserSername()}:{Bcolors.ENDC}")
+    history.setNewPartHistory(input(f"{Bcolors.OKGREEN}... {str(history.getLastPartHistory())} {Bcolors.ENDC}\n"))
     
     #delay de 2 segundos
-    time.sleep(2)
+    time.sleep(1)
     clear()
 
     if history.saveNewPartHistory():
         print("Tu historia a sido guardada: ")
-        print(f"{Bcolors.UNDERLINE}" + "\n" + history.getFullHistory())
+        print(f"\n{Bcolors.OKBLUE} {history.getFullHistory()} {Bcolors.ENDC}")
     else:
-        print("No se ha añadido nada nuevo a la historia.")
+        print(f"{Bcolors.FAIL}No se ha añadido nada nuevo a la historia.{Bcolors.ENDC}")
 
-    print(f"{Bcolors.HEADER}" + "\nMuy bien " + player.getUserName() + " " + player.getUserSername() + ", ahora es momento de que esta historia siga viajando.\nCompartí este programa con quien quieras para que continue la historia.\n\n")
-    time.sleep(2)
-
-    #filePath = input("Ingrese la ruta: ")
-    #fileName = input("Ingrese el nombre del archivo y su extensión: ")
-    
-    #if os.path.exists("content/history.txt"):
-        #pass
-
-
-
-    #Si no existe historia, comenzar una
-
-    #Si ya existe una historia, debo seguirla
-        #Traer las últimas palabras con un máximo de 20 palabras
-        #Continuar la historia usando hasta 20 palabras máximo.
-        #Guardarla
-            #Si sos la última persona te muestro la historia completa
-
-            #Si quedan fragmento por completar, imprimo indicación de reenviar este programa.
-
-    #Si la historia ya está terminada porque participaron 7 persona, la imprimo completa.
+    print(f"\nMuy bien {Bcolors.OKGREEN}{player.getUserName()} {player.getUserSername()}{Bcolors.ENDC}, ahora es momento de que esta historia siga viajando.\nCompartí este programa con quien quieras para que continue la historia.\n\n")
+    time.sleep(1)
