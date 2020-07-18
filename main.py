@@ -4,15 +4,28 @@ try:
     import glob
     import time
 except ImportError:
+    print("ImportError: no se han podido importar todos los módulos.")
     sys = None
     os = None
     glob = None
     time = None
 
 #importación de las clases
-from include.user import User
-from include.history import History
-from include.bcolor import Bcolors
+try:
+    from include.user import User
+except ImportError:
+    print("ImportError: el módulo 'User' no se ha podido importar.")
+
+try:
+    from include.history import History
+except ImportError:
+    print("ImportError: el módulo 'History' no se ha podido importar.")
+
+try:
+    from include.bcolor import Bcolors
+except ImportError:
+    print("ImportError: el módulo 'Bcolors' no se ha podido importar.")
+
 
 #funciones
 def clear(): 
@@ -23,8 +36,51 @@ def clear():
     else: 
         _ = os.system("clear")
 
+#ingresar números enteros
+def inputInt():
+    while True:
+        try:
+            userInput = int(input(f"\n{Bcolors.OKGREEN}Ingrese el número de la opción que deseé: {Bcolors.ENDC}"))      
+        except ValueError:
+            clear()
+            print(f"{Bcolors.FAIL}Ustede no ingresó un número, por favor vuelva a intentarlo.{Bcolors.ENDC}")
+            continue
+        else:
+            break
+    
+    return userInput
+            
+#comienza la ejecución
 if __name__ == "__main__":
     clear()
+
+    while True:
+
+        #1. Iniciar sesión
+        #2. Leer la historia
+        #3. Continuar la historia
+        #4. Salir
+        options = ('Iniciar sesión.', 'Leer la historia.', 'Continuar la historia.', 'Salir.')
+
+        count = 1
+        for option in options:
+            print(str(count) + ". " + option)
+            count += 1
+
+        optionSelected = inputInt()
+        
+        print("\n")
+
+        if optionSelected == 1:
+            print(f"{Bcolors.OKGREEN}Elegista la opción: {Bcolors.ENDC}" + options[optionSelected - 1])
+        elif optionSelected == 2:
+            print(f"{Bcolors.OKGREEN}Elegista la opción: {Bcolors.ENDC}" + options[optionSelected - 1])
+        elif optionSelected == 3:
+            print(f"{Bcolors.OKGREEN}Elegista la opción: {Bcolors.ENDC}" + options[optionSelected - 1])
+        elif optionSelected == 4:
+            break
+        else:
+            print("\nPor favor, selecciona una opción válida")
     
     #creación de la instancia de la clase User()
     player = User()
@@ -32,14 +88,9 @@ if __name__ == "__main__":
     #seteo del nombre y apellido del usuario
     player.setUserName(input("Hola, ingresa tu nombre: "))
     player.setUserSername(input(f"Muy bien {player.getUserName()}, ahora ingresa tu apellido: "))
-<<<<<<< HEAD
-    print(f"{Bcolors.OKGREEN}Un gusto tenerte aquí {player.getUserName()} {player.getUserSername()}.")
-    print(player.getUserLogin())
-=======
     player.setUserEmail(input(f"Genial {player.getUserName()}, por último ingresá tu email: "))
     print(f"{Bcolors.OKGREEN}Ahora sí, es un gusto tenerte aquí {player.getUserName()} {player.getUserSername()}, {player.getUserEmail()}.")
     print(player.getUserLoginTime())
->>>>>>> 8c88908a80deed98eb1b1351a93179eda1426d17
 
     #delay de 2 segundos
     time.sleep(2)

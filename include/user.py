@@ -1,6 +1,7 @@
 try:
     import  pytz
 except ImportError:
+    print("ImportError: el módulo 'pytz' no se ha podido importar.")
     pytz = None
 
 from datetime import datetime

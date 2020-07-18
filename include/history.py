@@ -8,7 +8,7 @@ class History:
 
     #métodos
     def __init__(self):
-        fileObject = open(r"data/history.txt", encoding="utf-8")
+        fileObject = open(r"dist/history.txt", encoding="utf-8")
         self.setFullHistory(fileObject.read())
         #guardo las últimas 20 palabras
         self.setLastPartHistory(((self.getFullHistory()).split())[-20:])
@@ -50,11 +50,11 @@ class History:
     #guardar la nueva parte de la historia
     def saveNewPartHistory(self):
         if self.getNewPartHistory() != "":
-            fileObject = open(r"data/history.txt", "a", encoding="utf-8")
+            fileObject = open(r"dist/history.txt", "a", encoding="utf-8")
             fileObject.write(" " + self.getNewPartHistory())
             fileObject.close()
 
-            fileObject = open(r"data/history.txt", "r", encoding="utf-8")
+            fileObject = open(r"dist/history.txt", "r", encoding="utf-8")
             self.setFullHistory(fileObject.read() + "...")
             fileObject.close()
             return True
