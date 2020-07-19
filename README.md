@@ -12,16 +12,16 @@ Antes de ejecutar los siguientes comandos es necesario tener instalado [Python 3
 ``` pip install pipenv ```.  
 
 + MacOs o Linux:  
-``` pip3 install pipenv ```.   
+``` pip3 install pipenv ```.  
 
 2. Instalamos nuestro entorno virtual tomando las dependencias del "Pipfile.lock".  
 
-``` pipenv install --ignore-pipfile ```
+``` pipenv install --ignore-pipfile ```.  
 
 3. Iniciamos el entorno virtual y comprobamos la versión de Python (<3.8).
 
-``` pipenv shell ```
-``` python --version ```
+``` pipenv shell ```.  
+``` python --version ```.  
 
 
 ## Referencias
