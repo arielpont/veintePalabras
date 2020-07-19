@@ -91,7 +91,7 @@ if __name__ == "__main__":
         showOptions(options)
 
         optionSelected = selectOption(options)
-        
+
         print("\n")
 
         if optionSelected == 1:
@@ -133,6 +133,7 @@ if __name__ == "__main__":
             time.sleep(1)
 
         elif optionSelected == 2:
+            #marian hace la opción 2
             clear()
             print(f"{Bcolors.OKGREEN}Elegista la opción: {Bcolors.ENDC} {options[optionSelected - 1]}\n")
         elif optionSelected == 3:

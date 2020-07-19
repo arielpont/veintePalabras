@@ -73,6 +73,8 @@ class History:
     
     #guardar la nueva parte de la historia
     def saveNewPartHistory(self):
+        """ esta función es para guardar el nuevo fragmento de la historia """
+
         if self.getNewPartHistory() != "":
             fileObject = open(r"dist/history.txt", "a", encoding="utf-8")
             fileObject.write(" " + self.getNewPartHistory())
@@ -84,4 +86,3 @@ class History:
             return True
         else:
             return False
-

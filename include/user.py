@@ -34,27 +34,23 @@ class User:
 
     def setUserName(self, set):
         self.userName = set
-        return self.userName
 
     def getUserSername(self):
         return self.userSername
 
     def setUserSername(self, set):
         self.userSername = set
-        return self.userSername
 
     def getUserEmail(self):
         return self.userEmail
 
     def setUserEmail(self, set):
         self.userEmail = set
-        return self.userEmail
 
     def getUserLoginTime(self):
         return self.userLoginTime
 
     def setUserLoginTime(self, set):
         self.userLoginTime = set
-        return self.userLoginTime
 
     #(tarea) crear funciones para almacenar los datos de los usuarios en un archivo
