@@ -1,3 +1,7 @@
+##################
+##### IMPORT #####
+##################
+
 try:
     import sys
     import os
@@ -26,8 +30,10 @@ try:
 except ImportError:
     print("ImportError: el módulo 'Bcolors' no se ha podido importar.")
 
+#####################
+##### FUNCIONES #####
+#####################
 
-#funciones
 def clear(): 
     #windows 
     if os.name == "nt": 
@@ -36,38 +42,55 @@ def clear():
     else: 
         _ = os.system("clear")
 
+#imprime una lista de opciones (list or tuple)
+def showOptions(options):
+    if options != "" and type(options) is list or type(options) is tuple:
+        count = 1
+        for option in options:
+            print(f"{str(count)}. {option}")
+            count += 1
+    else:
+        pass
+
+
 #ingresar números enteros
-def inputInt():
+def selectOption(options):
     while True:
         try:
             userInput = int(input(f"\n{Bcolors.OKGREEN}Ingrese el número de la opción que deseé: {Bcolors.ENDC}"))      
         except ValueError:
             clear()
-            print(f"{Bcolors.FAIL}Ustede no ingresó un número, por favor vuelva a intentarlo.{Bcolors.ENDC}")
+            print(f"{Bcolors.FAIL}Ustede no ingresó un número, por favor vuelva a intentarlo.{Bcolors.ENDC}\n")
+            showOptions(options)
             continue
         else:
             break
     
     return userInput
             
-#comienza la ejecución
+################
+##### MAIN #####
+################
+
 if __name__ == "__main__":
     clear()
 
     while True:
 
-        #1. Iniciar sesión
-        #2. Leer la historia
-        #3. Continuar la historia
+        #1. Continuar la historia
+        #2. Leer últimas 20 palabras de la historia
+        #3. Editar mí último ingreso
         #4. Salir
-        options = ('Continuar la historia.', 'Leer últimas 20 palabras de la historia.', 'Editar el último ingreso.', 'Salir.')
+        options = (
+            'Continuar la historia.',
+            f'Leer últimas 20 palabras de la historia {Bcolors.FAIL}(en desarrollo).{Bcolors.ENDC}',
+            f'Editar mí último ingreso {Bcolors.FAIL}(en desarrollo).{Bcolors.ENDC}',
+            'Salir.'
+        )
 
-        count = 1
-        for option in options:
-            print(f"{str(count)}. {option}")
-            count += 1
+        showOptions(options)
 
-        optionSelected = inputInt()
+        optionSelected = selectOption(options)
         
         print("\n")
 
@@ -94,7 +117,7 @@ if __name__ == "__main__":
             #creación de la instancia History()
             history = History()
             print(f"{Bcolors.HEADER}Es momento de continuar la historia {player.getUserName()} {player.getUserSername()}:{Bcolors.ENDC}")
-            history.setNewPartHistory(input(f"{Bcolors.OKGREEN}... {str(history.getLastPartHistory())} {Bcolors.ENDC}\n"))
+            history.setNewPartHistory(input(f"{Bcolors.OKGREEN}...{str(history.getLastPartHistory())} {Bcolors.ENDC} "))
             
             #delay de 2 segundos
             time.sleep(1)
@@ -102,11 +125,11 @@ if __name__ == "__main__":
 
             if history.saveNewPartHistory():
                 print("Tu historia a sido guardada: ")
-                print(f"\n{Bcolors.OKBLUE} {history.getFullHistory()} {Bcolors.ENDC}")
+                print(f"\n{Bcolors.OKBLUE}{history.getFullHistory()}{Bcolors.ENDC}")
             else:
                 print(f"{Bcolors.FAIL}No se ha añadido nada nuevo a la historia.{Bcolors.ENDC}")
 
-            print(f"\nMuy bien {Bcolors.OKGREEN}{player.getUserName()} {player.getUserSername()}{Bcolors.ENDC}, ahora es momento de que esta historia siga viajando.\nCompartí este programa con quien quieras para que continue la historia.\n\n")
+            print(f"\nMuy bien {Bcolors.OKGREEN}{player.getUserName()} {player.getUserSername()}{Bcolors.ENDC}, ahora es momento de que esta historia siga creciendo.\nCompartí este programa con quien quieras que continue escribiendo la historia.\n\n")
             time.sleep(1)
 
         elif optionSelected == 2:
@@ -120,4 +143,5 @@ if __name__ == "__main__":
             print(f"{Bcolors.FAIL}¡Adiós!{Bcolors.ENDC}\n")
             exit()
         else:
-            print("\nPor favor, selecciona una opción válida")
+            clear()
+            print(f"{Bcolors.FAIL}Por favor, selecciona una opción válida.{Bcolors.ENDC}\n")
