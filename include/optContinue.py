@@ -4,7 +4,7 @@ except ImportError:
     print("ImportError: el módulo 'settings' no se ha podido importar.")
 
 try:
-    from include.functions import clear
+    from include.functions import clear, maxLen20
 except ImportError:
     print("ImportError: el módulo 'functions' no se ha podido importar.")
 
@@ -40,22 +40,32 @@ def play():
     settings.player = User()
 
     #seteo del nombre y apellido del usuario
-    settings.player.setUserName(str(input("Hola, ingrese su nombre: ")))
-    settings.player.setUserSername(str(input(f"Muy bien {Bcolors.OKGREEN}{settings.player.getUserName()}{Bcolors.ENDC}, ahora ingrese su apellido: ")))
-    settings.player.setUserEmail(str(input(f"Genial {Bcolors.OKGREEN}{settings.player.getUserName()} {settings.player.getUserSername()}{Bcolors.ENDC}, por último ingrese su email: ")))
-    print(f"Ahora sí, es un gusto tenerlo aquí {Bcolors.OKGREEN}{settings.player.getUserName()} {settings.player.getUserSername()}, {settings.player.getUserEmail()}.{Bcolors.ENDC}\n")
-
-    print(f"{Bcolors.FAIL}El horario de su registro es: {settings.player.getUserLoginTime()}{Bcolors.ENDC}")
+    settings.player.setUserName(str(input(f"Hola, ingrese su nombre: {Bcolors.OKGREEN}")))
+    settings.player.setUserSername(str(input(f"{Bcolors.ENDC}Muy bien {Bcolors.OKGREEN}{settings.player.getUserName()}{Bcolors.ENDC}, ahora ingrese su apellido: {Bcolors.OKGREEN}")))
+    settings.player.setUserEmail(str(input(f"{Bcolors.ENDC}Genial {Bcolors.OKGREEN}{settings.player.getUserName()} {settings.player.getUserSername()}{Bcolors.ENDC}, por último ingrese su email: {Bcolors.OKGREEN}")))
+    
+    clear()
+    print(f"{Bcolors.ENDC}Hola {Bcolors.OKGREEN}{settings.player.getUserName()} {settings.player.getUserSername()}, {settings.player.getUserEmail()}.{Bcolors.ENDC}")
+    print(f"El horario de su registro es: {Bcolors.FAIL}{settings.player.getUserLoginTime()}{Bcolors.ENDC}\n")
 
     #creación de la instancia History()
     settings.history = History()
-    print(f"{Bcolors.HEADER}Es momento de continuar la historia {settings.player.getUserName()} {settings.player.getUserSername()}:{Bcolors.ENDC}")
-    settings.history.setNewPartHistory(input(f"{Bcolors.OKGREEN}...{str(settings.history.getLastPartHistory())}{Bcolors.ENDC} "))
+    print(f"{Bcolors.HEADER}Es momento de continuar la historia: {Bcolors.ENDC}")
+    
+    #el usuario debe ingresar algo menor a igual a 20 palabras
+    while True:
+        new = input(f"...{str(settings.history.getLastPartHistory())} {Bcolors.OKGREEN}")
+
+        if maxLen20(new):
+            settings.history.setNewPartHistory(new)
+            break
+        else:
+            continue
 
     clear()
 
     if settings.history.saveNewPartHistory():
-        print("Tu historia a sido guardada: ")
+        print(f"{Bcolors.ENDC}Tu historia a sido guardada: ")
         print(f"\n{Bcolors.OKBLUE}{settings.history.getFullHistory()}{Bcolors.ENDC}")
     else:
         print(f"{Bcolors.FAIL}No se ha añadido nada nuevo a la historia.{Bcolors.ENDC}")
