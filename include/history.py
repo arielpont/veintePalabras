@@ -36,33 +36,25 @@ class History:
             self.setLastPartHistory(((self.getFullHistory()).split())[-20:])
             self.setLastPartHistory(self.listToString(self.getLastPartHistory()))
 
-    def __iter__(self):
-        pass
-
-    def __next__(self):
-        pass
-
     #encapsulamiento de variables
     def getFullHistory(self):
         return self.fullHistory
-    
     def setFullHistory(self, set):
         self.fullHistory = set
-        return self.fullHistory
     
     def getLastPartHistory(self):
         return self.lastPartHistory
-    
     def setLastPartHistory(self, set):
         self.lastPartHistory = set
-        return self.lastPartHistory
 
     def getNewPartHistory(self):
         return self.newPartHistory
-    
     def setNewPartHistory(self, set):
-        self.newPartHistory = set
-        return self.newPartHistory
+        #seteo solo si existe algún valor relevante
+        if set != "":
+            self.newPartHistory = set
+        else:
+            pass
     
     #convertir una list en string
     def listToString(self, list):  
@@ -80,7 +72,37 @@ class History:
 
             #actualizo la la variable fullHistory
             with open(self.historyFilePath, "r", encoding="utf-8") as f:
-                self.setFullHistory(f.read() + "...")
+                self.setFullHistory(f.read())
             return True
         else:
             return False
+
+    def deleteNewPartHistory(self, num):
+        try:
+            num = int(num)
+            self.setFullHistory((self.getFullHistory()[:-num]))
+            return True
+        except:
+            return False
+    
+    def updateNewPartHistory(self, new):
+        """ esta función es para editar el nuevo fragmento de la historia """
+
+        if new != "":
+            if self.deleteNewPartHistory(len(self.getNewPartHistory())):
+                print(f"Se han borrado {int(len(str(self.getNewPartHistory())))} caracteres finales de la historia.")
+                self.setNewPartHistory(new)
+                self.setFullHistory(self.getFullHistory() + self.getNewPartHistory())
+
+                try:
+                    with open(self.historyFilePath, "w", encoding="utf-8") as f:
+                        f.write(self.getFullHistory())
+                        return True
+                except:
+                    return False
+            else:
+                return False
+        else:
+            return False
+
+            

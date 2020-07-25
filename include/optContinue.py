@@ -50,7 +50,7 @@ def play():
     #creación de la instancia History()
     settings.history = History()
     print(f"{Bcolors.HEADER}Es momento de continuar la historia {settings.player.getUserName()} {settings.player.getUserSername()}:{Bcolors.ENDC}")
-    settings.history.setNewPartHistory(input(f"{Bcolors.OKGREEN}...{str(settings.history.getLastPartHistory())} {Bcolors.ENDC} "))
+    settings.history.setNewPartHistory(input(f"{Bcolors.OKGREEN}...{str(settings.history.getLastPartHistory())}{Bcolors.ENDC} "))
 
     clear()
 
