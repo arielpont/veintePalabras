@@ -1,10 +1,14 @@
 try:
-    import  pytz
+    import pytz
 except ImportError:
     print("ImportError: el módulo 'pytz' no se ha podido importar.")
     pytz = None
 
-from datetime import datetime
+try:
+    from datetime import datetime
+except ImportError:
+    print("ImportError: el módulo 'datatime' no se ha podido importar.")
+    datetime = None
 
 class User:
     """ clase para manejar los usuarios """

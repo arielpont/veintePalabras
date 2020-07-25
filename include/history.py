@@ -11,32 +11,30 @@ class History:
     fullHistory = ""
     lastPartHistory = ""
     newPartHistory = ""
+    historyFilePath = "dist/history.txt"
 
     #métodos
     def __init__(self):
-        
-        historyFilePath = "dist/history.txt"
 
-        if not os.path.exists(os.path.dirname(historyFilePath)):
+        if not os.path.exists(os.path.dirname(self.historyFilePath)):
             #el archivo no existe
             try:
                 #intento crear el archivo y le cargo el principio de la historia
-                os.makedirs(os.path.dirname(historyFilePath))
-                with open(historyFilePath, "w") as file:
+                os.makedirs(os.path.dirname(self.historyFilePath))
+                with open(self.historyFilePath, "w") as file:
                     file.write("En un antiguo poblado Chino exisitía una costumbre muy rara. Los habitantes")
             except OSError:
-                print("No se pudo crear el archivo " + historyFilePath)
+                print("No se pudo crear el archivo " + self.historyFilePath)
         else:
             #el archivo ya existe
             pass
 
-        #abro el archivo en modo lectura
-        fileObject = open(r""+historyFilePath, encoding="utf-8")
-
-        self.setFullHistory(fileObject.read())
-        #guardo las últimas 20 palabras
-        self.setLastPartHistory(((self.getFullHistory()).split())[-20:])
-        self.setLastPartHistory(self.listToString(self.getLastPartHistory()))
+        #abro y cierro el archivo en modo lectura
+        with open(self.historyFilePath, "r", encoding="utf-8") as f:
+            self.setFullHistory(f.read())
+            #guardo las últimas 20 palabras
+            self.setLastPartHistory(((self.getFullHistory()).split())[-20:])
+            self.setLastPartHistory(self.listToString(self.getLastPartHistory()))
 
     def __iter__(self):
         pass
@@ -76,13 +74,13 @@ class History:
         """ esta función es para guardar el nuevo fragmento de la historia """
 
         if self.getNewPartHistory() != "":
-            fileObject = open(r"dist/history.txt", "a", encoding="utf-8")
-            fileObject.write(" " + self.getNewPartHistory())
-            fileObject.close()
+            #añado nuevo fragmento de historia
+            with open(self.historyFilePath, "a", encoding="utf-8") as f:
+                f.write(" " + self.getNewPartHistory())
 
-            fileObject = open(r"dist/history.txt", "r", encoding="utf-8")
-            self.setFullHistory(fileObject.read() + "...")
-            fileObject.close()
+            #actualizo la la variable fullHistory
+            with open(self.historyFilePath, "r", encoding="utf-8") as f:
+                self.setFullHistory(f.read() + "...")
             return True
         else:
             return False
