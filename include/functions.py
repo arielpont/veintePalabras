@@ -44,5 +44,17 @@ def selectOption(options):
             continue
         else:
             break
-    
     return userInput
+
+#confirmar YES o NO
+def confirm(msg):
+    while True:
+        userInput = str(input(f"{Bcolors.OKGREEN}{msg}\n[Y/N]: {Bcolors.ENDC}"))
+
+        if userInput.lower() in ('y', 'yes'):
+            return True
+        elif userInput.lower() in ('n', 'no'):
+            return False
+        else:
+            print(f"{Bcolors.FAIL}Ustede no ingresó una opción válida, por favor vuelva a intentarlo.{Bcolors.ENDC}\n")
+            continue

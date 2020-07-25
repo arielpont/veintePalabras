@@ -68,9 +68,7 @@ if __name__ == "__main__":
             clear()
             print(f"{Bcolors.OKGREEN}Elegista la opción: {Bcolors.ENDC} {options[optionSelected - 1]}\n")
 
-            print(f"player type: {type(settings.player)}")
-            print(f"history type: {type(settings.history)}\n")
-
+            #chequeo si están definidos los objetos globales "player" y "history"
             if settings.player and settings.history is not None:
                 try:
                     import include.optEdit as optEdit
