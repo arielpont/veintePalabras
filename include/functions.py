@@ -24,6 +24,7 @@ def clear():
 #imprime una lista de opciones (list or tuple)
 def showOptions(options):
     if options != "" and type(options) is list or type(options) is tuple:
+        print(f"{Bcolors.HEADER}{Bcolors.BOLD}#  Menu{Bcolors.ENDC}")
         count = 1
         for option in options:
             print(f"{str(count)}. {option}")
@@ -49,7 +50,7 @@ def selectOption(options):
 #confirmar YES o NO
 def confirm(msg):
     while True:
-        userInput = str(input(f"{Bcolors.OKGREEN}{msg}\n[Y/N]: {Bcolors.ENDC}"))
+        userInput = str(input(f"{msg}\n[Y/N]: "))
 
         if userInput.lower() in ('y', 'yes'):
             return True
@@ -58,3 +59,11 @@ def confirm(msg):
         else:
             print(f"{Bcolors.FAIL}Ustede no ingresó una opción válida, por favor vuelva a intentarlo.{Bcolors.ENDC}\n")
             continue
+
+#max 20 words lenght
+def maxLen20(msg):
+    if len(msg.split()) <= 20:
+        return True
+    else:
+        print(f"{Bcolors.FAIL}Su ingreso sobrepasa el límite máximo de 20 palabras. Vuelva a intentarlo.{Bcolors.ENDC}\n")
+        return False

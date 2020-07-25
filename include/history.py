@@ -1,4 +1,19 @@
 try:
+    import include.settings as settings
+except ImportError:
+    print("ImportError: el módulo 'settings' no se ha podido importar.")
+
+try:
+    from include.functions import clear, maxLen20
+except ImportError:
+    print("ImportError: el módulo 'fuctions' no se ha podido importar.")
+
+try:
+    from include.bcolor import Bcolors
+except ImportError:
+    print("ImportError: el módulo 'Bcolors' no se ha podido importar.")
+
+try:
     import os
 except ImportError:
     print("ImportError: no se han podido importar todos los módulos.")
@@ -85,22 +100,32 @@ class History:
         except:
             return False
     
-    def updateNewPartHistory(self, new):
+    def updateNewPartHistory(self):
         """ esta función es para editar el nuevo fragmento de la historia """
 
-        if new != "":
-            if self.deleteNewPartHistory(len(self.getNewPartHistory())):
-                print(f"Se han borrado {int(len(str(self.getNewPartHistory())))} caracteres finales de la historia.")
-                self.setNewPartHistory(new)
-                self.setFullHistory(self.getFullHistory() + self.getNewPartHistory())
-
-                try:
-                    with open(self.historyFilePath, "w", encoding="utf-8") as f:
-                        f.write(self.getFullHistory())
-                        return True
-                except:
-                    return False
+        #el usuario debe ingresar algo menor a igual a 20 palabras
+        while True:
+            new = input(f"{Bcolors.OKGREEN}...{str(settings.history.getLastPartHistory())}{Bcolors.ENDC} ")
+            
+            if maxLen20(new):
+                break
             else:
+                continue
+        
+        #calculamos el lenght de su último ingreso y borramos ese mismo número de la historia full
+        if self.deleteNewPartHistory(len(self.getNewPartHistory())):
+            clear()
+            print(f"{Bcolors.FAIL}Se han borrado {Bcolors.BOLD}{int(len(str(self.getNewPartHistory())))}{Bcolors.ENDC} {Bcolors.FAIL}caracteres finales de la historia.{Bcolors.ENDC}\n")
+            #sobreescribimos la variable "newPartHistory" con lo que el usuario editó.
+            self.setNewPartHistory(new)
+            #actualizamos la historia completa
+            self.setFullHistory(self.getFullHistory() + self.getNewPartHistory())
+            #escribimos en el archivo la historia completa con el último ingreso del usuario editado
+            try:
+                with open(self.historyFilePath, "w", encoding="utf-8") as f:
+                    f.write(self.getFullHistory())
+                    return True
+            except:
                 return False
         else:
             return False
