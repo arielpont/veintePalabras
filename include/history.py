@@ -31,7 +31,7 @@ class History:
             pass
 
         #abro el archivo en modo lectura
-        fileObject = open(r""+historyFilePath, encoding="utf-8")
+        fileObject = open(historyFilePath, mode = "r", encoding="utf-8")
 
         self.setFullHistory(fileObject.read())
         #guardo las últimas 20 palabras
