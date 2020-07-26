@@ -21,13 +21,24 @@ def clear():
     else: 
         _ = os.system("clear")
 
+def printError(msg):
+    space = ""
+    count = 0
+    while len(msg) > count:
+        space += " "
+        count += 1
+    
+    print(f"{Bcolors.CREDBG}  {space}  {Bcolors.ENDC}")
+    print(f"{Bcolors.CREDBG}  {msg}  {Bcolors.ENDC}")
+    print(f"{Bcolors.CREDBG}  {space}  {Bcolors.ENDC}\n")
+
 #imprime una lista de opciones (list or tuple)
 def showOptions(options):
     if options != "" and type(options) is list or type(options) is tuple:
         print(f"{Bcolors.HEADER}{Bcolors.BOLD}#  Menu{Bcolors.ENDC}")
         count = 1
         for option in options:
-            print(f"{str(count)}. {option}")
+            print(f"{Bcolors.OKGREEN}{str(count)}.{Bcolors.ENDC} {option}")
             count += 1
     else:
         pass
@@ -40,7 +51,7 @@ def selectOption(options):
             userInput = int(input(f"\n{Bcolors.OKGREEN}Ingrese el número de la opción que deseé: {Bcolors.ENDC}"))      
         except ValueError:
             clear()
-            print(f"{Bcolors.FAIL}Ustede no ingresó un número, por favor vuelva a intentarlo.{Bcolors.ENDC}\n")
+            printError("Ustede no ingresó un número, por favor vuelva a intentarlo.")
             showOptions(options)
             continue
         else:
