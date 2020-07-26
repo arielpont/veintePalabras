@@ -1,7 +1,6 @@
 ##################
 ##### IMPORT #####
 ##################
-
 try:
     import include.settings as settings
 except ImportError:
@@ -23,11 +22,20 @@ except ImportError:
     print("ImportError: no se han podido importar todos los módulos.")
     time = None
 
+#libreria para reproducir sonidos
+try:
+    from playsound import playsound
+except:
+    print("ImportError: el módulo 'playsound' no se ha podido importar.")
+
 ################
 ##### MAIN #####
 ################
 
 if __name__ == "__main__":
+    #hago sonar un wav
+    playsound("audio/bienvenido.wav", False)
+    
     clear()
     while True:
         #1. Continuar la historia

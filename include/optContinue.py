@@ -4,7 +4,7 @@ except ImportError:
     print("ImportError: el módulo 'settings' no se ha podido importar.")
 
 try:
-    from include.functions import clear, maxLen20
+    from include.functions import clear, maxLen20, printError
 except ImportError:
     print("ImportError: el módulo 'functions' no se ha podido importar.")
 
@@ -46,7 +46,7 @@ def play():
     
     clear()
     print(f"{Bcolors.ENDC}Hola {Bcolors.OKGREEN}{settings.player.getUserName()} {settings.player.getUserSername()}, {settings.player.getUserEmail()}.{Bcolors.ENDC}")
-    print(f"El horario de su registro es: {Bcolors.FAIL}{settings.player.getUserLoginTime()}{Bcolors.ENDC}\n")
+    print(f"El horario de su registro es: {Bcolors.OKGREEN}{settings.player.getUserLoginTime()}{Bcolors.ENDC}\n")
 
     #creación de la instancia History()
     settings.history = History()
@@ -65,9 +65,9 @@ def play():
     clear()
 
     if settings.history.saveNewPartHistory():
-        print(f"{Bcolors.ENDC}Tu historia a sido guardada: ")
+        print(f"{Bcolors.ENDC}Tu historia a sido guardada:")
         print(f"\n{Bcolors.OKBLUE}{settings.history.getFullHistory()}{Bcolors.ENDC}")
     else:
-        print(f"{Bcolors.FAIL}No se ha añadido nada nuevo a la historia.{Bcolors.ENDC}")
+        printError("No se ha añadido nada nuevo a la historia.")
 
     print(f"\nMuy bien {Bcolors.OKGREEN}{settings.player.getUserName()} {settings.player.getUserSername()}{Bcolors.ENDC}, ahora es momento de que esta historia siga creciendo.\nCompartí este programa con quien quieras que continue escribiendo la historia.\n")

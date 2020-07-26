@@ -4,7 +4,7 @@ except ImportError:
     print("ImportError: el módulo 'settings' no se ha podido importar.")
 
 try:
-    from include.functions import confirm, clear
+    from include.functions import confirm, clear, printError
 except ImportError:
     print("ImportError: el módulo 'settings' no se ha podido importar.")
 
@@ -29,10 +29,11 @@ def play():
             if settings.history.updateNewPartHistory():
                 print(f"Tu historia a sido editada: {Bcolors.OKBLUE}{settings.history.getFullHistory()}{Bcolors.ENDC}\n")
             else:
-                print(f"{Bcolors.FAIL}No haz escrito nada nuevo, se conservará tu ingreso anterior.\n{Bcolors.ENDC}")
+                printError("No haz escrito nada nuevo, se conservará tu ingreso anterior.")
+
         else:
             clear()
     else:
-        print(f"{Bcolors.FAIL}No hay nada para editar porque no has continuado la historia.\n{Bcolors.ENDC}")
+        printError("No hay nada para editar porque no has continuado la historia.")
       
     

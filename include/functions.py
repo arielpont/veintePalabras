@@ -22,15 +22,7 @@ def clear():
         _ = os.system("clear")
 
 def printError(msg):
-    space = ""
-    count = 0
-    while len(msg) > count:
-        space += " "
-        count += 1
-    
-    print(f"{Bcolors.CREDBG}  {space}  {Bcolors.ENDC}")
-    print(f"{Bcolors.CREDBG}  {msg}  {Bcolors.ENDC}")
-    print(f"{Bcolors.CREDBG}  {space}  {Bcolors.ENDC}\n")
+    print(f"{Bcolors.CREDBG}  {msg}  {Bcolors.ENDC}\n")
 
 #imprime una lista de opciones (list or tuple)
 def showOptions(options):
