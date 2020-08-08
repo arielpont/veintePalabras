@@ -81,8 +81,6 @@ if __name__ == "__main__":
             
             """)
 
-            clear()
-
         #option 3
         elif optionSelected == 3:
             clear()
