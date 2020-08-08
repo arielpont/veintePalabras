@@ -66,6 +66,21 @@ if __name__ == "__main__":
         #option 2
         elif optionSelected == 2:
             #marian hace la opción 2
+            #Ari... agrego desde acá
+            clear()
+            print("""Usted leerá las últimas veinte palabras escritas... esperamos le resulten inspiradoras
+            
+            """)
+            historyFile = open("dist/history.txt", "r")
+            historyPrint = historyFile.read()
+            listsplit = historyPrint.split()
+            new_list= "".join(listsplit[-20]+" "+listsplit[-19]+" "+listsplit[-18]+" "+listsplit[-17]+" "+listsplit[-16]+" "+listsplit[-15]+" "+listsplit[-14]+" "+listsplit[-13]+" "+listsplit[-12]+" "+listsplit[-11]+" "+listsplit[-10]+" "+listsplit[-9]+" "+listsplit[-8]+" "+listsplit[-7]+" "+listsplit[-6]+" "+listsplit[-5]+" "+listsplit[-4]+" "+listsplit[-3]+" "+listsplit[-2]+" "+listsplit[-1])
+            print(new_list)
+            historyFile.close()
+            print("""
+            
+            """)
+
             clear()
 
         #option 3
