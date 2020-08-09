@@ -77,10 +77,9 @@ if __name__ == "__main__":
                 listsplit = historyPrint.split()
 
                 # @marian te animas a hacer la siguiente linea de código con un for?
-                new_list = "".join(listsplit[-20]+" "+listsplit[-19]+" "+listsplit[-18]+" "+listsplit[-17]+" "+listsplit[-16]+" "+listsplit[-15]+" "+listsplit[-14]+" "+listsplit[-13]+" "+listsplit[-12]+" "+listsplit[-11]+" "+listsplit[-10]+" "+listsplit[-9]+" "+listsplit[-8]+" "+listsplit[-7]+" "+listsplit[-6]+" "+listsplit[-5]+" "+listsplit[-4]+" "+listsplit[-3]+" "+listsplit[-2]+" "+listsplit[-1])
-                
-                print().format()
+                new_list = " ".join(listsplit[-20:])
                 print(f"{new_list}\n")
+            
 
         #option 3
         elif optionSelected == 3:
