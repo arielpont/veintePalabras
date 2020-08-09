@@ -23,18 +23,18 @@ except ImportError:
     time = None
 
 #libreria para reproducir sonidos
-try:
-    from playsound import playsound
-except:
-    print("ImportError: el módulo 'playsound' no se ha podido importar.")
+#try:
+    #from playsound import playsound
+#except:
+    #print("ImportError: el módulo 'playsound' no se ha podido importar.")
 
 ################
 ##### MAIN #####
 ################
 
 if __name__ == "__main__":
-    #hago sonar un wav
-    playsound("audio/bienvenido.wav", False)
+    # hago sonar un wav
+    # playsound("audio/bienvenido.wav", False)
     
     clear()
     while True:
@@ -65,21 +65,21 @@ if __name__ == "__main__":
 
         #option 2
         elif optionSelected == 2:
-            #marian hace la opción 2
-            #Ari... agrego desde acá
+
             clear()
-            print("""Usted leerá las últimas veinte palabras escritas... esperamos le resulten inspiradoras
+            print("Usted leerá las últimas veinte palabras escritas... esperamos le resulten inspiradoras\n")
             
-            """)
-            historyFile = open("dist/history.txt", "r")
-            historyPrint = historyFile.read()
-            listsplit = historyPrint.split()
-            new_list= "".join(listsplit[-20]+" "+listsplit[-19]+" "+listsplit[-18]+" "+listsplit[-17]+" "+listsplit[-16]+" "+listsplit[-15]+" "+listsplit[-14]+" "+listsplit[-13]+" "+listsplit[-12]+" "+listsplit[-11]+" "+listsplit[-10]+" "+listsplit[-9]+" "+listsplit[-8]+" "+listsplit[-7]+" "+listsplit[-6]+" "+listsplit[-5]+" "+listsplit[-4]+" "+listsplit[-3]+" "+listsplit[-2]+" "+listsplit[-1])
-            print(new_list)
-            historyFile.close()
-            print("""
-            
-            """)
+            # para abrir archivos suele ser mejor WITH porque abre y cierra automaticamente.
+            # es importante SIEMPRE indicar el ENCODING="UTF-8". Esto soluciona los problemas de caracteres con tildes y ñ por ejemplo.
+            # por convenciones siempre se usa la variable "f" para abrir archivos con WITH
+            with open("dist/history.txt", "r", encoding="utf-8") as f:
+                historyPrint = f.read()
+                listsplit = historyPrint.split()
+
+                # @marian te animas a hacer la siguiente linea de código con un for?
+                new_list = "".join(listsplit[-20]+" "+listsplit[-19]+" "+listsplit[-18]+" "+listsplit[-17]+" "+listsplit[-16]+" "+listsplit[-15]+" "+listsplit[-14]+" "+listsplit[-13]+" "+listsplit[-12]+" "+listsplit[-11]+" "+listsplit[-10]+" "+listsplit[-9]+" "+listsplit[-8]+" "+listsplit[-7]+" "+listsplit[-6]+" "+listsplit[-5]+" "+listsplit[-4]+" "+listsplit[-3]+" "+listsplit[-2]+" "+listsplit[-1])
+                
+                print(f"{new_list}\n")
 
         #option 3
         elif optionSelected == 3:

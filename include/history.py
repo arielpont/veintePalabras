@@ -22,30 +22,31 @@ except ImportError:
 class History:
     """ clase para manejar las historias """
    
-    #variables
+    # variables
     fullHistory = ""
     lastPartHistory = ""
     newPartHistory = ""
-    historyFilePath = "dist/history.txt"
+    # los nombres de las variables constantes van siempre en mayus.
+    HISTORY_PATH = "dist/history.txt"
 
     #métodos
     def __init__(self):
 
-        if not os.path.exists(os.path.dirname(self.historyFilePath)):
+        if not os.path.exists(os.path.dirname(self.HISTORY_PATH)):
             #el archivo no existe
             try:
                 #intento crear el archivo y le cargo el principio de la historia
-                os.makedirs(os.path.dirname(self.historyFilePath))
-                with open(self.historyFilePath, "w") as file:
+                os.makedirs(os.path.dirname(self.HISTORY_PATH))
+                with open(self.HISTORY_PATH, "w") as file:
                     file.write("En un antiguo poblado Chino exisitía una costumbre muy rara. Los habitantes")
             except OSError:
-                print("No se pudo crear el archivo " + self.historyFilePath)
+                print("No se pudo crear el archivo " + self.HISTORY_PATH)
         else:
             #el archivo ya existe
             pass
 
         #abro y cierro el archivo en modo lectura
-        with open(self.historyFilePath, "r", encoding="utf-8") as f:
+        with open(self.HISTORY_PATH, "r", encoding="utf-8") as f:
             self.setFullHistory(f.read())
             #guardo las últimas 20 palabras
             self.setLastPartHistory(((self.getFullHistory()).split())[-20:])
@@ -82,11 +83,11 @@ class History:
 
         if self.getNewPartHistory() != "":
             #añado nuevo fragmento de historia
-            with open(self.historyFilePath, "a", encoding="utf-8") as f:
+            with open(self.HISTORY_PATH, "a", encoding="utf-8") as f:
                 f.write(" " + self.getNewPartHistory())
 
             #actualizo la la variable fullHistory
-            with open(self.historyFilePath, "r", encoding="utf-8") as f:
+            with open(self.HISTORY_PATH, "r", encoding="utf-8") as f:
                 self.setFullHistory(f.read())
             return True
         else:
@@ -122,7 +123,7 @@ class History:
             self.setFullHistory(self.getFullHistory() + self.getNewPartHistory())
             #escribimos en el archivo la historia completa con el último ingreso del usuario editado
             try:
-                with open(self.historyFilePath, "w", encoding="utf-8") as f:
+                with open(self.HISTORY_PATH, "w", encoding="utf-8") as f:
                     f.write(self.getFullHistory())
                     return True
             except:
