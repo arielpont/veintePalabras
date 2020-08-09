@@ -22,15 +22,16 @@ except ImportError:
 class History:
     """ clase para manejar las historias """
    
-    # variables
-    fullHistory = ""
-    lastPartHistory = ""
-    newPartHistory = ""
     # los nombres de las variables constantes van siempre en mayus.
     HISTORY_PATH = "dist/history.txt"
 
     #métodos
     def __init__(self):
+
+        # variables
+        self.fullHistory = ""
+        self.lastPartHistory = ""
+        self.newPartHistory = ""
 
         if not os.path.exists(os.path.dirname(self.HISTORY_PATH)):
             #el archivo no existe
