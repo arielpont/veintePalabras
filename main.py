@@ -2,8 +2,6 @@
 ##### IMPORT #####
 ##################
 
-from include.history import HISTORY_PATH
-
 try:
     import include.settings as settings
 except ImportError:
@@ -18,12 +16,6 @@ try:
     from include.bcolor import Bcolors
 except ImportError:
     print("ImportError: el módulo 'Bcolors' no se ha podido importar.")
-
-try:
-    import time
-except ImportError:
-    print("ImportError: no se han podido importar todos los módulos.")
-    time = None
 
 #libreria para reproducir sonidos
 #try:
@@ -72,9 +64,7 @@ if __name__ == "__main__":
             clear()
             print("Usted leerá las últimas veinte palabras escritas... esperamos le resulten inspiradoras\n")
             
-            # para abrir archivos suele ser mejor WITH porque abre y cierra automaticamente.
-            # es importante SIEMPRE indicar el ENCODING="UTF-8". Esto soluciona los problemas de caracteres con tildes y ñ por ejemplo.
-            # por convenciones siempre se usa la variable "f" para abrir archivos con WITH
+            from include.history import HISTORY_PATH
             with open(HISTORY_PATH, "r", encoding="utf-8") as f:
                 historyPrint = f.read()
                 listsplit = historyPrint.split()

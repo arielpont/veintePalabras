@@ -59,13 +59,13 @@ class History:
     def getNewPartHistory(self):
         return self.newPartHistory
     def setNewPartHistory(self, set):
-        #seteo solo si existe algún valor relevante
+        # seteo solo si existe algún valor relevante
         if set != "":
             self.newPartHistory = set
         else:
             pass
     
-    #convertir una list en string
+    # convertir una list en string
     def listToString(self, list):  
         str = " " 
         return (str.join(list))
