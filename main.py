@@ -1,6 +1,9 @@
 ##################
 ##### IMPORT #####
 ##################
+
+from include.history import HISTORY_PATH
+
 try:
     import include.settings as settings
 except ImportError:
@@ -72,7 +75,7 @@ if __name__ == "__main__":
             # para abrir archivos suele ser mejor WITH porque abre y cierra automaticamente.
             # es importante SIEMPRE indicar el ENCODING="UTF-8". Esto soluciona los problemas de caracteres con tildes y ñ por ejemplo.
             # por convenciones siempre se usa la variable "f" para abrir archivos con WITH
-            with open("dist/history.txt", "r", encoding="utf-8") as f:
+            with open(HISTORY_PATH, "r", encoding="utf-8") as f:
                 historyPrint = f.read()
                 listsplit = historyPrint.split()
 
@@ -96,11 +99,7 @@ if __name__ == "__main__":
                 print(f"{Bcolors.FAIL}No puedes editar aún porque no has añadido nada a la historia.{Bcolors.ENDC}\n")
 
         #option 4
-        elif optionSelected == 4:
+        else:
             clear()
             print(f"{Bcolors.FAIL}¡Adiós!{Bcolors.ENDC}\n")
             exit()
-
-        else:
-            clear()
-            print(f"{Bcolors.FAIL}Por favor, selecciona una opción válida.{Bcolors.ENDC}\n")

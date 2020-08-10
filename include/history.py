@@ -1,53 +1,45 @@
-try:
-    import include.settings as settings
-except ImportError:
-    print("ImportError: el módulo 'settings' no se ha podido importar.")
+import os
+import include.settings as settings
+from include.functions import clear, maxLen20
+from include.bcolor import Bcolors
 
-try:
-    from include.functions import clear, maxLen20
-except ImportError:
-    print("ImportError: el módulo 'fuctions' no se ha podido importar.")
-
-try:
-    from include.bcolor import Bcolors
-except ImportError:
-    print("ImportError: el módulo 'Bcolors' no se ha podido importar.")
-
-try:
-    import os
-except ImportError:
-    print("ImportError: no se han podido importar todos los módulos.")
-    os = None
+# variables constantes
+HISTORY_PATH = "dist/history.txt"
 
 class History:
     """ clase para manejar las historias """
-   
-    # los nombres de las variables constantes van siempre en mayus.
-    HISTORY_PATH = "dist/history.txt"
 
     #métodos
     def __init__(self):
 
-        # variables
+        # variables de instancia
         self.fullHistory = ""
         self.lastPartHistory = ""
         self.newPartHistory = ""
 
-        if not os.path.exists(os.path.dirname(self.HISTORY_PATH)):
+        if not os.path.exists(os.path.dirname(HISTORY_PATH)):
             #el archivo no existe
             try:
                 #intento crear el archivo y le cargo el principio de la historia
-                os.makedirs(os.path.dirname(self.HISTORY_PATH))
-                with open(self.HISTORY_PATH, "w") as file:
-                    file.write("En un antiguo poblado Chino exisitía una costumbre muy rara. Los habitantes")
+                os.makedirs(os.path.dirname(HISTORY_PATH))
+
+                # 1. ¿queres inspiración?
+                    # 1a. música
+                    # 2a. imágenes en bit
+
+                # 2. Ya estoy listo para empezar mi historia
+
+                with open(HISTORY_PATH, "w") as file:
+                    file.write("Holaaaaa")
+                    # "En un antiguo poblado Chino exisitía una costumbre muy rara. Los habitantes"
             except OSError:
-                print("No se pudo crear el archivo " + self.HISTORY_PATH)
+                print("No se pudo crear el archivo " + HISTORY_PATH)
         else:
             #el archivo ya existe
             pass
 
         #abro y cierro el archivo en modo lectura
-        with open(self.HISTORY_PATH, "r", encoding="utf-8") as f:
+        with open(HISTORY_PATH, "r", encoding="utf-8") as f:
             self.setFullHistory(f.read())
             #guardo las últimas 20 palabras
             self.setLastPartHistory(((self.getFullHistory()).split())[-20:])
@@ -84,11 +76,11 @@ class History:
 
         if self.getNewPartHistory() != "":
             #añado nuevo fragmento de historia
-            with open(self.HISTORY_PATH, "a", encoding="utf-8") as f:
+            with open(HISTORY_PATH, "a", encoding="utf-8") as f:
                 f.write(" " + self.getNewPartHistory())
 
             #actualizo la la variable fullHistory
-            with open(self.HISTORY_PATH, "r", encoding="utf-8") as f:
+            with open(HISTORY_PATH, "r", encoding="utf-8") as f:
                 self.setFullHistory(f.read())
             return True
         else:
@@ -124,7 +116,7 @@ class History:
             self.setFullHistory(self.getFullHistory() + self.getNewPartHistory())
             #escribimos en el archivo la historia completa con el último ingreso del usuario editado
             try:
-                with open(self.HISTORY_PATH, "w", encoding="utf-8") as f:
+                with open(HISTORY_PATH, "w", encoding="utf-8") as f:
                     f.write(self.getFullHistory())
                     return True
             except:
