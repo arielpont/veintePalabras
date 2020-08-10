@@ -1,7 +1,7 @@
 import os
-import include.settings as settings
-from include.functions import clear, maxLen20
-from include.bcolor import Bcolors
+import settings as settings
+from functions import clear, maxLen20
+from bcolor import Bcolors
 
 # variables constantes
 HISTORY_PATH = "dist/history.txt"
