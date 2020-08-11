@@ -1,11 +1,26 @@
 # Standard library imports
 import os
-from time import sleep
 # Third party imports
 # Local application imports
 from modules.bcolor import Bcolors
 
-def clear(): 
+def confirm(msg):
+    """ Return True if user write 'yes' or 'y' and False 'no' or 'n' (not sensible). """
+
+    while True:
+        userInput = str(input(f"{msg}\n[Y/N]: {Bcolors.OKGREEN}"))
+
+        if userInput.lower() in ('y', 'yes'):
+            return True
+        elif userInput.lower() in ('n', 'no'):
+            return False
+        else:
+            print_error("Ustede no ingresó una opción válida, por favor vuelva a intentarlo.")
+            continue
+
+def clear():
+    """ Clean the console in all OS. """
+
     #windows 
     if os.name == "nt": 
         _ = os.system("cls") 
@@ -13,27 +28,15 @@ def clear():
     else: 
         _ = os.system("clear")
 
-def printError(msg):
+def print_error(msg):
+    """ Print with style an error messagge. """
+
     print(f"\n{Bcolors.CREDBG}  {msg}  {Bcolors.ENDC}")
     input(f"{Bcolors.FAIL}-> Presiona ENTER para continuar{Bcolors.ENDC}\n")
     clear()
 
-# imprime una lista de opciones (list or tuple)
-def showOptions(options):
-    """ Imprime en pantalla un LIST o TUPLE """
-
-    if options != [] and options != () and (type(options) is list or type(options) is tuple):
-        print(f"{Bcolors.HEADER}{Bcolors.BOLD}#  Menu{Bcolors.ENDC}")
-        count = 1
-        for option in options:
-            print(f"{Bcolors.OKGREEN}{str(count)}.{Bcolors.ENDC} {option[0]}")
-            count += 1
-    else:
-        pass
-
-# ingresar números enteros
-def selectOption(options):
-    """ Devuelve un INT """
+def select_option(options):
+    """ Argument is an LIST or TUPLE. Return a index valid INT. """
 
     while True:
         try:
@@ -43,30 +46,29 @@ def selectOption(options):
                 break
             else:
                 clear()
-                printError("Por favor, selecciona una opción válida.")
-                showOptions(options)
+                print_error("Por favor, selecciona una opción válida.")
+                show_options(options)
                 continue
 
         except ValueError:
             clear()
-            printError("Ustede no ingresó un número, por favor vuelva a intentarlo.")
-            showOptions(options)
+            print_error("Ustede no ingresó un número, por favor vuelva a intentarlo.")
+            show_options(options)
             continue
         else:
-            printError("Hubo un error. Vuelva a ingresar un número válido.")
+            print_error("Hubo un error. Vuelva a ingresar un número válido.")
             continue
 
     return userInput
 
-# confirmar YES o NO
-def confirm(msg):
-    while True:
-        userInput = str(input(f"{msg}\n[Y/N]: "))
+def show_options(options):
+    """ Print a LIST or TUPLE and add numbers at the begin of each option. """
 
-        if userInput.lower() in ('y', 'yes'):
-            return True
-        elif userInput.lower() in ('n', 'no'):
-            return False
-        else:
-            print(f"{Bcolors.FAIL}Ustede no ingresó una opción válida, por favor vuelva a intentarlo.{Bcolors.ENDC}\n")
-            continue
+    if options != [] and options != () and (type(options) is list or type(options) is tuple):
+        print(f"{Bcolors.HEADER}{Bcolors.BOLD}#  Menu{Bcolors.ENDC}")
+        count = 1
+        for option in options:
+            print(f"{Bcolors.OKGREEN}{str(count)}.{Bcolors.ENDC} {option[0]}")
+            count += 1
+    else:
+        pass

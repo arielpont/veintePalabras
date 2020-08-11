@@ -2,7 +2,7 @@
 import os
 # Third party imports
 # Local application imports
-from modules.functions import clear, printError, confirm
+from modules.functions import clear, print_error, confirm
 from modules.bcolor import Bcolors
 
 class History:
@@ -28,10 +28,10 @@ class History:
                     f.write(f" {new_part}")
                     return True
             else:
-                printError("Debes ingresar hasta 20 palabras.")
+                print_error("Debes ingresar hasta 20 palabras.")
                 return False
         else:
-            printError("Debes añadir algo a la historia.")
+            print_error("Debes añadir algo a la historia.")
             return False
 
     def begin(self):
@@ -68,7 +68,8 @@ class History:
                     continue
 
         else:
-            print("Usted eligió no editar su último ingreso.")
+            clear()
+            print(f"{Bcolors.OKGREEN}Usted eligió no editar su último ingreso.{Bcolors.ENDC}\n")
 
     def exists(self):
         """ Return True if the history.txt exists and is not empty.
