@@ -1,17 +1,9 @@
-try:
-    import os
-except ImportError:
-    print("ImportError: no se han podido importar todos los módulos.")
-    os = None
-
-try:
-    from include.bcolor import Bcolors
-except ImportError:
-    print("ImportError: el módulo 'Bcolors' no se ha podido importar.")
-
-#####################
-##### FUNCIONES #####
-#####################
+# Standard library imports
+import os
+from time import sleep
+# Third party imports
+# Local application imports
+from modules.bcolor import Bcolors
 
 def clear(): 
     #windows 
@@ -22,32 +14,33 @@ def clear():
         _ = os.system("clear")
 
 def printError(msg):
-    print(f"{Bcolors.CREDBG}  {msg}  {Bcolors.ENDC}\n")
+    print(f"\n{Bcolors.CREDBG}  {msg}  {Bcolors.ENDC}")
+    input(f"{Bcolors.FAIL}-> Presiona ENTER para continuar{Bcolors.ENDC}\n")
+    clear()
 
 # imprime una lista de opciones (list or tuple)
 def showOptions(options):
-    """ Imprime en pantalla una LIST o TUPLE """
+    """ Imprime en pantalla un LIST o TUPLE """
 
-    if options != [] or options != () and type(options) is list or type(options) is tuple:
-        
+    if options != [] and options != () and (type(options) is list or type(options) is tuple):
         print(f"{Bcolors.HEADER}{Bcolors.BOLD}#  Menu{Bcolors.ENDC}")
         count = 1
         for option in options:
-            print(f"{Bcolors.OKGREEN}{str(count)}.{Bcolors.ENDC} {option}")
+            print(f"{Bcolors.OKGREEN}{str(count)}.{Bcolors.ENDC} {option[0]}")
             count += 1
     else:
         pass
 
 # ingresar números enteros
 def selectOption(options):
-    """ Permite ingresar números enteros. Como argumento recibe una LIST or TUPLE """
+    """ Devuelve un INT """
 
     while True:
         try:
             userInput = int(input(f"\n{Bcolors.OKGREEN}Ingrese el número de la opción que deseé: {Bcolors.ENDC}"))
 
-            if userInput <= len(options):
-               break 
+            if userInput <= len(options) and userInput > 0:
+                break
             else:
                 clear()
                 printError("Por favor, selecciona una opción válida.")
@@ -77,11 +70,3 @@ def confirm(msg):
         else:
             print(f"{Bcolors.FAIL}Ustede no ingresó una opción válida, por favor vuelva a intentarlo.{Bcolors.ENDC}\n")
             continue
-
-# max 20 words lenght
-def maxLen20(msg):
-    if len(msg.split()) <= 20:
-        return True
-    else:
-        print(f"{Bcolors.FAIL}Su ingreso sobrepasa el límite máximo de 20 palabras. Vuelva a intentarlo.{Bcolors.ENDC}\n")
-        return False
