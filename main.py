@@ -9,10 +9,12 @@ if __name__ == "__main__":
     clear()
 
     # init instance History()
-    htr = history.History()
+    htr = history.History() 
 
     # check if an history already exists and then continue writing
     if(htr.exists()):
+        history_is_new = False
+
         while True:
             clear()
             print(f"{Bcolors.HEADER}Es momento de continuar la historia: {Bcolors.ENDC}\n")
@@ -22,13 +24,16 @@ if __name__ == "__main__":
                 clear()
                 print(f"{Bcolors.ENDC}Tu historia a sido guardada:")
                 print(f"{Bcolors.OKBLUE}{htr.get_full()}{Bcolors.ENDC}\n")
+
                 break
             else:
                 continue
     # init a new history from blank
     else:
-        htr.begin()
-    
+        history_is_new = True
+
+        htr.begin()  
+
     # create the matrix for the menu with [text, func()]
     options = [
         ["Editar mi ingreso.", htr.edit],
@@ -44,6 +49,16 @@ if __name__ == "__main__":
             clear()
             print(f"{Bcolors.FAIL}¡Adios!{Bcolors.ENDC}\n")
             exit()
+        elif options[option-1][1] == htr.edit:
+            clear()
+
+            if history_is_new:
+                # call the function to reset the history (only in case the user is starting a new story)
+                htr.edit(reset = True)
+                continue
+            else:
+                htr.edit(reset = False)
+                continue
         else:
             clear()
             # call the function in options[x][1]()
