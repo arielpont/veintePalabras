@@ -38,14 +38,18 @@ class History:
         """ Start writting de history """
 
         if not os.path.exists(os.path.dirname(self.HISTORY_PATH)):
+            
             try:
                 os.makedirs(os.path.dirname(self.HISTORY_PATH))
+
                 with open(self.HISTORY_PATH, "w", encoding="utf-8") as f:
                     f.write("En un antiguo poblado Chino los habitantes")
                     # do a backup of the history just for in case user wants to edit
                     self.backup_history = "En un antiguo poblado Chino los habitantes"
+                    
             except OSError:
                 print_error("No se pudo crear el archivo " + self.HISTORY_PATH)
+
         else:
             print(f"{Bcolors.OKBLUE}¡Encontramos una historia creada!{Bcolors.ENDC}\n")
     
@@ -55,7 +59,7 @@ class History:
         x = len(self.get_full()) - len(self.backup_history)
 
         if not reset:
-            x =- 1
+            x -= 1
 
         print(f"Su último ingreso es: {Bcolors.OKGREEN}{self.get_full()[-x:]}{Bcolors.ENDC}\n")
 
