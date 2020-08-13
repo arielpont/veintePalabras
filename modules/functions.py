@@ -8,7 +8,8 @@ def confirm(msg):
     """ Return True if user write 'yes' or 'y' and False 'no' or 'n' (not sensible). """
 
     while True:
-        userInput = str(input(f"{msg}\n[Y/N]: {Bcolors.OKGREEN}"))
+        userInput = str(input(f"{msg}\n[YES/NO]: {Bcolors.OKGREEN}"))
+        print(f"{Bcolors.ENDC}")
 
         if userInput.lower() in ('y', 'yes'):
             return True
